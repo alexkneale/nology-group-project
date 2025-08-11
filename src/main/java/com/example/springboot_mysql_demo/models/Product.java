@@ -1,7 +1,9 @@
-package models;
+package com.example.springboot_mysql_demo.models;
 
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity(name= "Products")
 public class Product {
@@ -15,10 +17,9 @@ public class Product {
     private String category;
     private int quantityInStock;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
 
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders;
 
 
     public Long getId() {

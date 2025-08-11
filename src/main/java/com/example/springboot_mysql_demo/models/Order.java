@@ -1,4 +1,4 @@
-package models;
+package com.example.springboot_mysql_demo.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,16 +12,20 @@ import java.util.List;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long basketTotal;
-
+    private List<Integer> quantityList;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
 
-    @OneToMany(mappedBy = "order")
-    @JsonIgnore
-    private List<Product> productList;
+    @ManyToMany
+    @JoinTable(
+            name = "ordered_products",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
 
 
     public Long getId() {
@@ -41,11 +45,11 @@ import java.util.List;
     }
 
     public List<Product> getProductList() {
-        return productList;
+        return products;
     }
 
     public void setProductList(List<Product> productList) {
-        this.productList = productList;
+        this.products = productList;
     }
 
     public List<Integer> getQuantityList() {
@@ -56,5 +60,5 @@ import java.util.List;
             this.quantityList = quantityList;
         }
 
-    private List<Integer> quantityList;
+
 }
