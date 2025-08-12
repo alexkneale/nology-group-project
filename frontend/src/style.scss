@@ -1,0 +1,32 @@
+/* CSS RESET */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.product-section__top-info,
+.product-section__bottom-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-section__title,
+.product-section__subtitle {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-section__image {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
