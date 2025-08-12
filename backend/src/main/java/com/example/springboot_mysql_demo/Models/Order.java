@@ -13,6 +13,7 @@ public class Order {
     private Long id;
     private Double basketTotal;
 
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -47,6 +48,14 @@ public class Order {
 
     public void setProductList(List<OrderedProduct> orderedProducts) {
         this.orderedProducts = orderedProducts;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
