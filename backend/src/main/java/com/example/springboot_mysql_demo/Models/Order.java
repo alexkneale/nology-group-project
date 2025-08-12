@@ -39,12 +39,6 @@ public class Order {
                 .map(op -> op.getPriceAtPurchase() * (Double.valueOf(op.getQuantity())))
                 .reduce(0.0, Double::sum);  ;
     }
-    // methods to be called whenever Order saved or modified
-    @PrePersist
-    @PreUpdate
-    private void preSave() {
-        calculateBasketTotal();
-    }
 
 //  function to add products to order and recalculate basket total
 //    public void addProduct (OrderedProduct product){
