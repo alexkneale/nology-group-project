@@ -1,7 +1,8 @@
-package com.example.springboot_mysql_demo;
+package com.example.springboot_mysql_demo.Controllers;
 
 
 import com.example.springboot_mysql_demo.Models.User;
+import com.example.springboot_mysql_demo.Services.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

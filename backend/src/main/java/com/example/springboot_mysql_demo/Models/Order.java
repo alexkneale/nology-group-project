@@ -11,7 +11,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long basketTotal;
+    private Double basketTotal;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -31,12 +31,14 @@ public class Order {
         this.id = id;
     }
 
-    public Long getBasketTotal() {
+    public Double getBasketTotal() {
         return basketTotal;
     }
 
     public void setBasketTotal(Long basketTotal) {
-        this.basketTotal = basketTotal;
+        this.basketTotal = orderedProducts.stream()
+                .map(op -> op.getPriceAtPurchase() * (Double.valueOf(op.getQuantity())))
+                .reduce(0.0, Double::sum);  ;
     }
 
     public List<OrderedProduct> getProductList() {

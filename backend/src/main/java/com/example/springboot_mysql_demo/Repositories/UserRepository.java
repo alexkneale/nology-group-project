@@ -1,4 +1,4 @@
-package com.example.springboot_mysql_demo;
+package com.example.springboot_mysql_demo.Repositories;
 
 
 import com.example.springboot_mysql_demo.Models.User;

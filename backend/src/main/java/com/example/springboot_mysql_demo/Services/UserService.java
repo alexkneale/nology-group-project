@@ -1,7 +1,8 @@
-package com.example.springboot_mysql_demo;
+package com.example.springboot_mysql_demo.Services;
 
 
 import com.example.springboot_mysql_demo.Models.User;
+import com.example.springboot_mysql_demo.Repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
