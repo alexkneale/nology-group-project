@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=#, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/src/style.scss">
+      <head>
+        <meta charset="UTF-8" / />
+        <meta name="viewport" content="width=#, initial-scale=1.0" / />
+        <title>Document</title>
+        <link rel="stylesheet" href="/src/style.scss">
   </head>
-  <body>
-    <section class="product-section">
+      <body>
+        <nav class="navbar">
+            <!-- Logo -->
+            <div class="navbar__logo">
+                <a href="/" class="navbar__logo-link">Eco Collective</a>
+            </div>
+
+            <!-- Nav Links -->
+            <ul class="navbar__menu">
+                <li class="navbar__menu-item">
+                    <a href="/shop" class="navbar__menu-link">Shop</a>
+                </li>
+                <li class="navbar__menu-item">
+                    <a href="/about" class="navbar__menu-link">About</a>
+                </li>
+            </ul>
+
+            <!--  Search + Cart - TS -->
+            <div class="navbar__actions">
+                <div class="navbar__search">
+                    <input
+                        type="text"
+                        class="navbar__search-input"
+                        placeholder="Search products..."
+                    />
+                </div>
+                <div class="navbar__cart">
+                    <a href="/cart" class="navbar__cart-link">
+                        🛒
+                        <span class="navbar__cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </nav>    <section class="product-section">
       <div class="product-section__top-info">
         <h2 class="product-section__title"></h2>
         <img class="product-section__image" src="assets/shoper-slLo94wES2M-unsplash.jpg" alt="Collab Artwork" />
@@ -22,5 +54,5 @@
         <img class="product-section__image" src="" alt="Product" />
       </div>
     </section>
-  </body>
+      </body>
 </html>
