@@ -22,7 +22,9 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderedProduct> orderedProducts;
 
-
+    public Order() {
+        setBasketTotal();
+    }
 
     public Long getId() {
         return id;
@@ -36,7 +38,7 @@ public class Order {
         return basketTotal;
     }
 
-    public void setBasketTotal(Long basketTotal) {
+    public void setBasketTotal() {
         this.basketTotal = orderedProducts.stream()
                 .map(op -> op.getPriceAtPurchase() * (Double.valueOf(op.getQuantity())))
                 .reduce(0.0, Double::sum);  ;
