@@ -6,13 +6,6 @@
     box-sizing: border-box;
 }
 
-.product-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f4f4f4;
-}
 
 .product-section__top-info,
 .product-section__bottom-info {
@@ -31,8 +24,9 @@
 
 .product-section__image {
     width: 100%;
-    max-width: 250px;
+    max-width: 700px;
     margin-top: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
 }
