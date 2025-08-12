@@ -36,10 +36,17 @@ public class Order {
         return basketTotal;
     }
 
-    public void setBasketTotal(Long basketTotal) {
+    public void calculateBasketTotal() {
         this.basketTotal = orderedProducts.stream()
                 .map(op -> op.getPriceAtPurchase() * (Double.valueOf(op.getQuantity())))
                 .reduce(0.0, Double::sum);  ;
+    }
+
+    // methods to be called whenever Order saved or modified
+    @PrePersist
+    @PreUpdate
+    private void preSave() {
+        calculateBasketTotal();
     }
 
     public List<OrderedProduct> getProductList() {

@@ -59,7 +59,7 @@ public class OrderedProduct {
     }
 
     public void setPriceAtPurchase(Double priceAtPurchase) {
-        this.priceAtPurchase = priceAtPurchase;
+        this.priceAtPurchase = product.getPrice();
     }
 
 
