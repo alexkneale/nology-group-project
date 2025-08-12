@@ -1,53 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-      <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>E-commerce website</title>
-        <link rel="stylesheet" href="/src/style.scss">
-  </head>
-      <body>
-        <nav class="navbar">
-            <!-- Logo -->
-            <div class="navbar__logo">
-                <a href="/" class="navbar__logo-link">Eco Collective</a>
-            </div>
-
-            <!-- Nav Links -->
-            <ul class="navbar__menu">
-                <li class="navbar__menu-item">
-                    <a href="/shop" class="navbar__menu-link">Shop</a>
-                </li>
-                <li class="navbar__menu-item">
-                    <a href="/about" class="navbar__menu-link">About</a>
-                </li>
-            </ul>
-
-            <!--  Search + Cart - TS -->
-            <div class="navbar__actions">
-                <div class="navbar__search">
-                    <input
-                        type="text"
-                        class="navbar__search-input"
-                        placeholder="Search products..."
-                    />
-                </div>
-                <div class="navbar__cart">
-                    <a href="/cart" class="navbar__cart-link">
-                        🛒
-                        <span class="navbar__cart-count">3</span>
-                    </a>
-                </div>
-            </div>
-        </nav>    <section class="product-section">
-      <div class="product-section__top-info">
-        <h2 class="product-section__title"></h2>
-        <img class="product-section__image" src="assets/shoper-slLo94wES2M-unsplash.jpg" alt="Collab Artwork" />
-      </div>
-      <div class="product-section__bottom-info">
-        <h3 class="product-section__subtitle"></h3>
-        <img class="product-section__image" src="assets/shutter-speed-BQ9usyzHx_w-unsplash.jpg" alt="Product" />
-      </div>
-    </section>
-      </body>
+        <link rel="stylesheet" href="/src/styles.scss" />
+        <script type="module" src="/src/main.ts"></script>
+    </head>
+    <body>
+        <div id="navbar-root"></div>
+        <div id="content-root"></div>
+    </body>
 </html>
