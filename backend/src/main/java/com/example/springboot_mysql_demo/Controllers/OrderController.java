@@ -3,6 +3,7 @@ package com.example.springboot_mysql_demo.Controllers;
 
 import com.example.springboot_mysql_demo.Models.Order;
 import com.example.springboot_mysql_demo.Services.OrderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,9 @@ public class OrderController {
         return orderService.getOrderByID(id);
     }
 // creating an order for a user
-    @PostMapping
-    public Order createOrder(@RequestParam Long userID){
-        return orderService.createOrder(userID);
-    }
+    @PostMapping("/user/{userId}")
+    public ResponseEntity<Order> createOrder(@PathVariable Long userId) {
+    Order order = orderService.createOrder(userId);
+    return new ResponseEntity<>(order, HttpStatus.CREATED);
+}
 }
