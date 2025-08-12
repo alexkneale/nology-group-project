@@ -1,4 +1,4 @@
-package com.example.springboot_mysql_demo.models;
+package com.example.springboot_mysql_demo.Models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 

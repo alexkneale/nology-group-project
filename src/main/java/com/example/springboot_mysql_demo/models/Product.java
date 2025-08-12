@@ -1,4 +1,4 @@
-package com.example.springboot_mysql_demo.models;
+package com.example.springboot_mysql_demo.Models;
 
 
 import jakarta.persistence.*;
@@ -18,8 +18,8 @@ public class Product {
     private int quantityInStock;
 
 
-    @ManyToMany(mappedBy = "products")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "product")
+    private List<OrderedProduct> orderedProducts;
 
 
     public Long getId() {

@@ -1,4 +1,4 @@
-package com.example.springboot_mysql_demo.models;
+package com.example.springboot_mysql_demo.Models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -6,26 +6,21 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-    @Entity(name = "Orders")
-    public class Order {
+@Entity(name = "Orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long basketTotal;
-    private List<Integer> quantityList;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "ordered_products",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderedProduct> orderedProducts;
+
 
 
     public Long getId() {
@@ -44,21 +39,12 @@ import java.util.List;
         this.basketTotal = basketTotal;
     }
 
-    public List<Product> getProductList() {
-        return products;
+    public List<OrderedProduct> getProductList() {
+        return orderedProducts;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.products = productList;
+    public void setProductList(List<OrderedProduct> orderedProducts) {
+        this.orderedProducts = orderedProducts;
     }
-
-    public List<Integer> getQuantityList() {
-            return quantityList;
-        }
-
-     public void setQuantityList(List<Integer> quantityList) {
-            this.quantityList = quantityList;
-        }
-
 
 }
