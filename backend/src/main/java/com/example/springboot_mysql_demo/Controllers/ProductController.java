@@ -39,4 +39,9 @@ public class ProductController {
     public Product createProduct(@RequestBody Product product) {
         return productService.createProduct(product);
     }
+
+    @DeleteMapping
+    public void deleteProduct(@RequestParam Long productID){
+        productService.deleteProduct(productID);
+    }
 }

@@ -29,10 +29,10 @@ public class OrderController {
         return orderService.getOrderByID(id);
     }
 // creating an order for a user
-    @PostMapping("/user/{userId}")
-    public ResponseEntity<Order> createOrder(@PathVariable Long userId) {
-    Order order = orderService.createOrder(userId);
-    return new ResponseEntity<>(order, HttpStatus.CREATED);
+    @PostMapping()
+    public ResponseEntity<Order> createOrder(@RequestParam Long userId) {
+        Order order = orderService.createOrder(userId);
+        return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 
 //  delete order
