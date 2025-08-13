@@ -78,5 +78,8 @@ public class OrderService {
         orderRepo.deleteById(id);
     }
 
+    public void deleteAll (){
+        orderRepo.deleteAll();
+    }
 
 }

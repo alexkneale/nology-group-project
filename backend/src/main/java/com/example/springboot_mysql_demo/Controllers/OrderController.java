@@ -41,4 +41,10 @@ public class OrderController {
         orderService.deleteOrder(id);
         return "Order number: "+ id + " deleted.";
     }
+
+    @DeleteMapping
+    public String deleteAll (){
+        orderService.deleteAll();
+        return "All orders deleted";
+    }
 }
