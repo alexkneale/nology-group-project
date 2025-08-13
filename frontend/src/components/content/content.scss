@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+section {
+   margin: 2rem 2rem 0; 
+  border: solid black 1px;
+}
+
+.product-section__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-section__title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-section__image {
+  width: 100vw; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  max-height: 750px; 
+}
+
