@@ -1,30 +1,38 @@
-<nav class="navbar">
+<nav class="navbar" data-component="navbar">
     <!-- Logo -->
     <div class="navbar__logo">
-        <a href="/" class="navbar__logo-link">Eco Collective</a>
+        <a href="/" class="navbar__logo-link" aria-label="Eco Collective home">
+            <img
+                class="navbar__logo-img"
+                alt="Eco Collective logo"
+                height="36"
+            />
+        </a>
     </div>
+
     <!-- Nav Links -->
-    <ul class="navbar__menu">
-        <li class="navbar__menu-item">
-            <a href="/shop" class="navbar__menu-link">Shop</a>
+    <ul class="navbar__menu" role="menubar">
+        <li class="navbar__menu-item" role="none">
+            <a href="/shop" class="navbar__menu-link" role="menuitem">Shop</a>
         </li>
-        <li class="navbar__menu-item">
-            <a href="/about" class="navbar__menu-link">About</a>
+        <li class="navbar__menu-item" role="none">
+            <a href="/about" class="navbar__menu-link" role="menuitem">About</a>
         </li>
     </ul>
-    <!--  Search + Cart - TS -->
+
+    <!-- Search + Cart -->
     <div class="navbar__actions">
         <div class="navbar__search">
             <input
                 type="text"
                 class="navbar__search-input"
-                placeholder="Search products..."
+                placeholder="Search…"
+                aria-label="Search products"
             />
         </div>
         <div class="navbar__cart">
-            <a href="/cart" class="navbar__cart-link">
-                🛒
-                <span class="navbar__cart-count">3</span>
+            <a href="/cart" class="navbar__cart-link" aria-label="Cart">
+                🛒 <span class="navbar__cart-count" aria-live="polite">3</span>
             </a>
         </div>
     </div>
