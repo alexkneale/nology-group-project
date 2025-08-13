@@ -4,7 +4,7 @@ import "./components/shop/shop";
 
 async function getData() {
     const url =
-        "https://nology-group-project-production.up.railway.app/api/users";
+        "https://nology-group-project-production.up.railway.app/api/products";
     try {
         const response = await fetch(url);
         if (!response.ok) {
