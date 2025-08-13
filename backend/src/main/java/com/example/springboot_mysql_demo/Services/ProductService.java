@@ -46,12 +46,13 @@ public class ProductService {
 
         // check that name, description, category have text, and that price and quantity are positive
 
-        if (StringUtils.hasText(newProduct.getName()) || StringUtils.hasText(newProduct.getDescription()) || StringUtils.hasText(newProduct.getCategory())  || newProduct.getPrice()>0 || newProduct.getQuantityInStock()>=0 ) {
+        if (StringUtils.hasText(newProduct.getName()) || StringUtils.hasText(newProduct.getDescription()) || StringUtils.hasText(newProduct.getCategory())  || newProduct.getPrice()>0 || newProduct.getQuantityInStock()>=0 || StringUtils.hasText(newProduct.getImgUrl())) {
             existingProduct.setName(newProduct.getName());
             existingProduct.setDescription(newProduct.getDescription());
             existingProduct.setCategory(newProduct.getCategory());
             existingProduct.setPrice(newProduct.getPrice());
             existingProduct.setQuantityInStock(newProduct.getQuantityInStock());
+            existingProduct.setImgUrl(newProduct.getImgUrl());
 
 
         } else {
