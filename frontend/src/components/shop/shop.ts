@@ -34,24 +34,34 @@ const fetchProducts = async (): Promise<Product[]> => {
 const productCardGenerator = (product: Product | null): void => {
   if (product) {
     const card = document.createElement("div");
-    card.classList.add("product-card");
+    card.classList.add("shop-card");
+
+    const image = document.createElement("img");
+    image.classList.add("shop-card__image");
+    image.src = product.imgUrl;
+    image.alt = product.name;
 
     const title = document.createElement("h3");
-    const description = document.createElement("p");
+    title.classList.add("shop-card__name");
+    title.innerText = product.name;
+
     const price = document.createElement("p");
-    const category = document.createElement("p");
-    const image = document.createElement("img");
+    price.classList.add("shop-card__price");
+    price.innerText = `£${product.price.toFixed(2)}`;
 
-    title.innerText = `Title: ${product.name}`;
-    description.innerText = `Description: ${product.description}`;
-    price.innerText = `Price: $${product.price}`;
-    category.innerText = `Category: ${product.category}`;
-    image.src = product.imgUrl;
+    const description = document.createElement("p");
+    description.classList.add("shop-card__description");
+    description.innerHTML = `<strong>Description:</strong> ${product.description}`
 
-    const elements = [title, description, price, category, image];
-    elements.forEach((e) => {
-      card.appendChild(e);
-    });
+    const cartBtn = document.createElement("button");
+    cartBtn.classList.add("shop-card__cart-btn");
+
+
+    card.appendChild(image);
+    card.appendChild(title);
+    card.appendChild(price);
+    card.appendChild(description);
+    card.appendChild(cartBtn)
 
     const container = document.getElementById("itemList") as HTMLElement;
     container.appendChild(card);
@@ -63,13 +73,22 @@ const productCardGenerator = (product: Product | null): void => {
   }
 };
 
-// Fetch products and render them
-fetchProducts().then((products) => {
-  // Render all products initially
-  const container = document.getElementById("itemList") as HTMLElement;
-  container.innerHTML = ""; // Clear any existing content
+let products: Product[] = []; 
 
+// Fetch products and render them
+fetchProducts().then((fetchedProducts) => {
+  products = fetchedProducts;
   products.forEach((product) => {
     productCardGenerator(product);
   });
+});
+
+
+const searchInput = document.getElementById("searchInput") as HTMLInputElement;
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase();
+  const container = document.getElementById("itemList") as HTMLElement;
+  container.innerHTML = "";
+
+  products.filter((product) => product.name.toLowerCase().includes(query)).forEach((product) => productCardGenerator(product));
 });
