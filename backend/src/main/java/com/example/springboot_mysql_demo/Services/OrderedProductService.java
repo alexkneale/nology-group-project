@@ -37,7 +37,11 @@ public class OrderedProductService {
         newOrderedProduct.setProduct(product);
         newOrderedProduct.setQuantity(quantity);
         newOrderedProduct.setPriceAtPurchase(product.getPrice());
-        return orderedProductRepo.save(newOrderedProduct);
+        orderedProductRepo.save(newOrderedProduct);
+        // Recalculate total for the parent order
+        order.calculateBasketTotal();
+        orderRepo.save(order);
+        return newOrderedProduct;
     }
 
     // Read

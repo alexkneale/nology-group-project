@@ -5,6 +5,8 @@ import com.example.springboot_mysql_demo.Models.Product;
 import com.example.springboot_mysql_demo.Models.User;
 import com.example.springboot_mysql_demo.Services.OrderedProductService;
 import com.example.springboot_mysql_demo.Services.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +20,18 @@ public class OrderedProductController {
         this.orderedProductService = orderedProductService;
     }
 
+
+
     // Create
 
-    @PostMapping
-    public OrderedProduct createOrderedProduct(@RequestParam Long orderId,
-                                               @RequestParam Long productId,
-                                               @RequestParam int quantity) {
-        return orderedProductService.createOrderedProduct(orderId,  productId,  quantity);
+    @PostMapping("/order/{orderId}/{productId}/{quantity}")
+    public ResponseEntity<OrderedProduct> createOrderedProduct(@PathVariable Long orderId,
+                                               @PathVariable Long productId,
+                                               @PathVariable int quantity) {
+        OrderedProduct orderedProduct = orderedProductService.createOrderedProduct(orderId,  productId,  quantity);
+        return new ResponseEntity<>(orderedProduct,HttpStatus.CREATED);
     }
+
 
     // Read
     @GetMapping("/{id}")
