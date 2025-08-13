@@ -24,10 +24,10 @@ public class OrderedProductController {
 
     // Create
 
-    @PostMapping("/order/{orderId}/{productId}/{quantity}")
-    public ResponseEntity<OrderedProduct> createOrderedProduct(@PathVariable Long orderId,
-                                               @PathVariable Long productId,
-                                               @PathVariable int quantity) {
+    @PostMapping()
+    public ResponseEntity<OrderedProduct> createOrderedProduct(@RequestParam Long orderId,
+                                               @RequestParam Long productId,
+                                               @RequestParam int quantity) {
         OrderedProduct orderedProduct = orderedProductService.createOrderedProduct(orderId,  productId,  quantity);
         return new ResponseEntity<>(orderedProduct,HttpStatus.CREATED);
     }
@@ -46,7 +46,7 @@ public class OrderedProductController {
 
     // Update
 
-    @PatchMapping("/{id}/quantity")
+    @PatchMapping("/{id}")
     public OrderedProduct updateQuantity(
             @PathVariable Long id,
             @RequestParam int newQuantity

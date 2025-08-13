@@ -1,7 +1,10 @@
 package com.example.springboot_mysql_demo.Services;
 
 
+import com.example.springboot_mysql_demo.Models.Order;
 import com.example.springboot_mysql_demo.Models.User;
+import com.example.springboot_mysql_demo.Repositories.OrderRepository;
+import com.example.springboot_mysql_demo.Repositories.OrderedProductRepository;
 import com.example.springboot_mysql_demo.Repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ public class UserService {
     public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
+
 
     //  CREATE
     public User createUser(User user) {
@@ -81,10 +85,9 @@ public class UserService {
 //  DELETE
 
     public void deleteUser (Long id){
-        if (!userRepo.existsById(id)){
-            throw new EntityNotFoundException("User with ID: " + id
-                    + " was not found and therefore could not be deleted" );
-        }
+        userRepo.delete(userRepo.findById(id).orElseThrow(()->
+                new EntityNotFoundException("User with ID: \" + id\n" +
+                        "                    + \" was not found and therefore could not be deleted")));
     }
 }
 

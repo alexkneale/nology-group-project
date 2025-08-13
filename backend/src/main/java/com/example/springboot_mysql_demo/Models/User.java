@@ -1,6 +1,7 @@
 package com.example.springboot_mysql_demo.Models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.action.internal.OrphanRemovalAction;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class User {
     private String name;
     private String email;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 
     public Long getId() {
