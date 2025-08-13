@@ -60,6 +60,12 @@ public class OrderedProductController {
     public void deleteOrderedProduct(@PathVariable Long id) {
         orderedProductService.deleteOrderedProduct(id);
     }
+    // Delete all function
+
+    @DeleteMapping
+    public void deleteAllOrderedProducts() {
+        orderedProductService.deleteAllOrderedProducts();
+    }
 
 
 }

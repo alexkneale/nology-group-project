@@ -59,7 +59,11 @@ public class OrderedProductService {
         OrderedProduct existingOrderedProduct = orderedProductRepo.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Ordered Product with ID: %d, was not found", id)));
         if (newQuantity > 0) {
             existingOrderedProduct.setQuantity(newQuantity);
+            // calc basket total
+            Order order = existingOrderedProduct.getOrder();
+            order.calculateBasketTotal();
             // save changes
+            orderRepo.save(order);
             orderedProductRepo.save(existingOrderedProduct);
         } else if (newQuantity == 0) {
             deleteOrderedProduct(id);
@@ -71,7 +75,19 @@ public class OrderedProductService {
     // delete
     public void deleteOrderedProduct (Long id){
         OrderedProduct existingOrderedProduct = orderedProductRepo.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Ordered Product with ID: %d, was not found", id)));
-        orderedProductRepo.delete(existingOrderedProduct);
+        Order order = existingOrderedProduct.getOrder();
 
+        // delete
+        orderedProductRepo.delete(existingOrderedProduct);
+        // update basket total
+        order.calculateBasketTotal();
+        // save changes
+        orderRepo.save(order);
+
+    }
+
+    // delete all
+    public void deleteAllOrderedProducts (){
+        orderedProductRepo.deleteAll();
     }
 }
