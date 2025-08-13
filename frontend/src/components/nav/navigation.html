@@ -7,10 +7,11 @@
                 alt="Eco Collective logo"
                 height="36"
             />
+            <span class="sr-only"></span>
         </a>
     </div>
 
-    <!-- Nav Links -->
+    <!-- Links -->
     <ul class="navbar__menu" role="menubar">
         <li class="navbar__menu-item" role="none">
             <a href="/shop" class="navbar__menu-link" role="menuitem">Shop</a>
@@ -20,20 +21,13 @@
         </li>
     </ul>
 
-    <!-- Search + Cart -->
+    <!-- Cart -->
     <div class="navbar__actions">
-        <div class="navbar__search">
-            <input
-                type="text"
-                class="navbar__search-input"
-                placeholder="Search…"
-                aria-label="Search products"
-            />
-        </div>
-        <div class="navbar__cart">
-            <a href="/cart" class="navbar__cart-link" aria-label="Cart">
-                🛒 <span class="navbar__cart-count" aria-live="polite">3</span>
-            </a>
-        </div>
+        <button type="button" class="navbar__cart-btn" aria-label="Open cart">
+            <span aria-hidden="true">🛒</span>
+            <span>Cart</span>
+            <span class="navbar__cart-count">0</span>
+            <span class="navbar__cart-total">£0.00</span>
+        </button>
     </div>
 </nav>
