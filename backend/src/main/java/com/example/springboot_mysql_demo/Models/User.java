@@ -13,7 +13,6 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
     private List<Order> orders;
 
     public Long getId() {
