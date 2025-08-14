@@ -1,6 +1,6 @@
 import nav from "../nav/navigation.html?raw";
 import logoUrl from "../../assets/ecoshoplogo.png";
-import { createElement, getObject } from "./cartUtils";
+import { createElement, getObject, createOrderedItems } from "./cartUtils";
 import type { Product, Order } from "./cartUtils";
 
 const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
@@ -117,53 +117,7 @@ if (checkoutTotal) {
     checkoutTotal.innerText = `£${total}`;
 }
 
-// sending post request for order, ordered products
-// const createOrder = async (userId: number): Promise<Order> => {
-//     try {
-//         const response = await fetch(`${BASE_URL}/orders?userId=${userId}`, {
-//             method: "POST",
-//         });
-//         console.log(`${BASE_URL}/orders/${userId}`);
-//         if (!response.ok) {
-//             throw new Error(`Order post failed, error: ${response.status}`);
-//         }
-
-//         return "Order posted successfully!";
-//     } catch (error) {
-//         console.error(error);
-//         return "Order creation failed.";
-//     }
-// };
-// get request for order id
-
 // sending post request for ordered items, need for each
-const createOrderedItems = async (
-    orderId: number,
-    productId: number,
-    quantity: number
-): Promise<string> => {
-    try {
-        console.log(
-            `${BASE_URL}/ordered-products?orderId=${orderId}&productId=${productId}&quantity=${quantity}`
-        );
-        const response = await fetch(
-            `${BASE_URL}/ordered-products?orderId=${orderId}&productId=${productId}&quantity=${quantity}`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-        if (!response.ok) {
-            throw new Error(`Order post failed, error: ${response.status}`);
-        }
-        return "Ordered product posted successfully!";
-    } catch (error) {
-        console.log(error);
-        return "Ordered product creation failed";
-    }
-};
 
 // event listeners
 checkoutButton.addEventListener("click", async () => {
@@ -191,6 +145,3 @@ checkoutButton.addEventListener("click", async () => {
         console.error("Checkout failed:", error);
     }
 });
-// checkoutButton.addEventListener("click", async()=>{
-//     const message = await createOrderedItems()
-// })

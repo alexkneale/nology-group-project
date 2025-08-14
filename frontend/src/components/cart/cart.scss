@@ -33,7 +33,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     align-items: center;
-    padding: 1vw 1vw;
+    padding: 1.5vw;
     border: 1px solid #378837;
     border-radius: 6px;
     background-color: #fff;
@@ -59,8 +59,18 @@
     }
 }
 
+.checkout-grid__total {
+    margin-top: 1vw;
+    height: 100px;
+}
+
 .checkout-button {
+    background-color: palette.$color-dark-green-dark;
+    color: white;
+    font-size: medium;
+    border-radius: 99px;
     width: 200px;
     margin-left: 40%;
+    margin-top: 2vw;
     font-family: "Plus Jakarta Sans", sans-serif;
 }
