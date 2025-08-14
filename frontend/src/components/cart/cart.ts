@@ -1,8 +1,12 @@
 import nav from "../nav/navigation.html?raw";
 import logoUrl from "../../assets/ecoshoplogo.png";
-import { createElement } from "./cartUtils";
+import { createElement, getObject, createOrderedItems } from "./cartUtils";
+import type { Product, Order } from "./cartUtils";
 import "./userSignUp";
 const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
+
+// need to replace with actual userId
+const userId = 1;
 
 const checkoutButton = document.querySelector(
     ".checkout-button"
@@ -31,20 +35,7 @@ const cartData: { productId: number; quantity: number }[] = [
 
 const productIds: number[] = cartData.map((obj) => obj.productId);
 
-// fetching products (all)
-export type Product = {
-    id: number;
-    name: string;
-    category: string;
-    description: string;
-    price: number;
-    quantity_in_stock: number;
-    imgUrl: string;
-};
-
-export const getProductData = async (
-    url: string
-): Promise<Product[] | null> => {
+const getProductData = async (url: string): Promise<Product[] | null> => {
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -126,51 +117,31 @@ if (checkoutTotal) {
     checkoutTotal.innerText = `£${total}`;
 }
 
-// sending post request for order, ordered products
-const createOrder = async (userId: number): Promise<string> => {
-    try {
-        const response = await fetch(`${BASE_URL}/orders/${userId}`, {
-            method: "POST",
-        });
-
-        if (!response.ok) {
-            throw new Error(`Order post failed, error: ${response.status}`);
-        }
-
-        return "Order posted successfully!";
-    } catch (error) {
-        console.error(error);
-        return "Order creation failed.";
-    }
-};
 // sending post request for ordered items, need for each
-const createOrderedItems = async (
-    orderId: number,
-    productId: number,
-    quantity: number
-): Promise<string> => {
+
+// event listeners
+checkoutButton.addEventListener("click", async () => {
     try {
-        const response = await fetch(
-            `${BASE_URL}/api/ordered-products/?orderId=${orderId}&productId=${productId}&quantity=${quantity}`,
+        const orderResponse = await fetch(
+            `${BASE_URL}/orders?userId=${userId}`,
             {
                 method: "POST",
             }
         );
-        if (!response.ok) {
-            throw new Error(`Order post failed, error: ${response.status}`);
+
+        if (!orderResponse.ok) {
+            throw new Error(`Order creation failed: ${orderResponse.status}`);
         }
-        return "Ordered product posted successfully!";
+        const orderGenerated = await orderResponse.json();
+        const orderId = orderGenerated.id;
+        console.log(orderId);
+        //  creating ordered products using order id
+        const results = await Promise.all(
+            cartData.map(({ productId, quantity }) =>
+                createOrderedItems(orderId, productId, quantity)
+            )
+        );
     } catch (error) {
-        console.log(error);
-        return "Ordered product creation failed";
+        console.error("Checkout failed:", error);
     }
-};
-
-// need to replace with
-const userId = 1;
-
-// event listeners
-checkoutButton.addEventListener("click", async () => {
-    const message = await createOrder(userId);
-    console.log(message);
 });
