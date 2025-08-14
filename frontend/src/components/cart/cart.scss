@@ -1,0 +1,66 @@
+@use "../nav/palette.scss";
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap");
+
+.checkout-grid {
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        font-weight: bold;
+        background-color: palette.$color-dark-green-light;
+        height: 3vw;
+        text-align: center;
+        margin-bottom: 1vw;
+        color: white;
+        font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+    }
+    &__total {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        text-align: center;
+    }
+}
+
+.checkout-product,
+.checkout-grid__total {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding: 1vw 1vw;
+    border: 1px solid #378837;
+    border-radius: 6px;
+    background-color: #fff;
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    &__img {
+        max-width: 120px;
+        height: 100px;
+    }
+
+    &__name {
+        display: inline-block;
+    }
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    &__price,
+    &__quantity {
+        text-align: center;
+    }
+}
+
+.checkout-button {
+    width: 200px;
+    margin-left: 40%;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
