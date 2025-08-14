@@ -22,17 +22,12 @@ const userDisplay = document.getElementById(
 
 const URL_BASE = "https://nology-group-project-production.up.railway.app/";
 
-<<<<<<< HEAD
-let currentUser;
-=======
 type User = {
-    id: number;
     email: string;
     name: string;
 };
 
 export let currentUser: User;
->>>>>>> integration-test
 
 formCreate.addEventListener("submit", (event) => {
     event.preventDefault();
