@@ -2,7 +2,7 @@ import nav from "../nav/navigation.html?raw";
 // import "../components/nav/nav";
 import logoUrl from "../../assets/ecoshoplogo.png";
 import { createElement, getObject, createOrderedItems } from "./cartUtils";
-import type { Product, Order } from "./cartUtils";
+import type { Product } from "./cartUtils";
 import "./userSignUp";
 import { currentUser } from "./userSignUp";
 const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
@@ -27,6 +27,17 @@ if (rootNavBar) {
     ) as HTMLImageElement;
     if (logoImg) logoImg.src = logoUrl;
 }
+// setting navbar links
+
+const SITE_URL = "https://alexkneale.github.io/nology-group-project/"; // Replace with your actual deployed URL
+
+// Wait for DOM to update
+setTimeout(() => {
+    // Update all anchor tags in the navbar
+    document.querySelectorAll(".navbar a").forEach((link) => {
+        link.setAttribute("href", `${SITE_URL}/index.html`);
+    });
+}, 0);
 
 const userBasketData = sessionStorage.getItem("checkoutProducts");
 
