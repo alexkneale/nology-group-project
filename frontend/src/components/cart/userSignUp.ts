@@ -22,15 +22,10 @@ const userDisplay = document.getElementById(
 
 const URL_BASE = "https://nology-group-project-production.up.railway.app/";
 
-type User = {
-    email: string;
-    name: string;
-};
-
 let currentUser;
 
 formCreate.addEventListener("submit", (event) => {
-    event.preventDefault(); // prevent form from reloading the page
+    event.preventDefault();
 
     const formData = new FormData(formCreate);
     const formValues: Record<string, string> = {};
@@ -40,9 +35,7 @@ formCreate.addEventListener("submit", (event) => {
         formValues[key] = value.toString();
     });
 
-    // Now you can manipulate the data however you like
-    console.log("Form values:", formValues);
-
+    //
     const body = {
         name: formValues["name"],
         email: formValues["email"],
@@ -70,6 +63,7 @@ formCreate.addEventListener("submit", (event) => {
             );
             currentUser = await responseUser.json();
             userDisplay.innerText = `Signed in as Name: ${currentUser.name}, Email: ${currentUser.email}`;
+            sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 
             return response.json(); // or whatever the API returns
         })
@@ -106,7 +100,7 @@ const signInHandling = async (event: SubmitEvent): Promise<void> => {
             divSignIn.style.backgroundColor = "#e6f9e6";
             signInMessage.innerText = `Welcome back, ${result.name}!`;
             currentUser = result;
-            console.log(currentUser);
+            sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
             userDisplay.innerText = `Signed in as Name: ${currentUser.name}, Email: ${currentUser.email}`;
         } else {
             // wrong name

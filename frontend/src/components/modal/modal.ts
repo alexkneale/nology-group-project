@@ -84,30 +84,6 @@ placeOrderBtn.addEventListener("click", async () => {
     const { cart } = getCartState();
     if (cart.length === 0) return;
 
-    // export type Product = {
-    //     id: number;
-    //     name: string;
-    //     description: string;
-    //     price: number;
-    //     category: string;
-    //     imgUrl: string;
-    //     quantityInStock: number;
-    // };
-
-    // export type CartItem = {
-    //     product: Product;
-    //     quantity: number;
-    // };
-
-    // type CartState = {
-    //     cart: CartItem[];
-    // };
-
-    // const state: CartState = {
-    //     cart: [],
-    // };
-    //
-
     // Prepare the order payload
     const orderPayload = cart.map((item) => ({
         productId: item.product.id,
