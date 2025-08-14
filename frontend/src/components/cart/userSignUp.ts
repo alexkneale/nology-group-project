@@ -100,7 +100,7 @@ const signInHandling = async (event: SubmitEvent): Promise<void> => {
             divSignIn.style.backgroundColor = "#e6f9e6";
             signInMessage.innerText = `Welcome back, ${result.name}!`;
             currentUser = result;
-            console.log(currentUser);
+            sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
             userDisplay.innerText = `Signed in as Name: ${currentUser.name}, Email: ${currentUser.email}`;
         } else {
             // wrong name
