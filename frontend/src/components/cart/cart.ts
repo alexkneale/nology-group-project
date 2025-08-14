@@ -15,6 +15,7 @@ const checkoutButton = document.querySelector(
 const checkoutTotal = document.querySelector(
     ".checkout-grid__total--price"
 ) as HTMLElement;
+const checkoutPage = document.querySelector(".checkout-page") as HTMLDivElement;
 
 // importing nav bar and logo
 const rootNavBar = document.querySelector("#navbar-root");
@@ -32,30 +33,9 @@ const cartData: { productId: number; quantity: number }[] = [
     { productId: 11, quantity: 1 },
     { productId: 8, quantity: 1 },
 ];
-
 const productIds: number[] = cartData.map((obj) => obj.productId);
 
-const getProductData = async (url: string): Promise<Product[] | null> => {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(
-                `API failed with response ${response.statusText} and error text ${response.status}`
-            );
-        }
-        return await response.json();
-    } catch (error) {
-        if (error instanceof Error) {
-            console.error(`Fetch failed with error: ${error}`);
-        } else {
-            throw new Error(`Unknown error occured`);
-        }
-    }
-    return [];
-};
-console.log(productIds);
-
-const allProductData = await getProductData(`${BASE_URL}/products`);
+const allProductData = await getObject(`${BASE_URL}/products`);
 
 // function to create cards for products
 const productCards = (product: Product | null): void => {
@@ -118,7 +98,7 @@ if (checkoutTotal) {
 }
 
 // sending post request for ordered items, need for each
-
+let orderComplete = false;
 // event listeners
 checkoutButton.addEventListener("click", async () => {
     try {
@@ -136,12 +116,21 @@ checkoutButton.addEventListener("click", async () => {
         const orderId = orderGenerated.id;
         console.log(orderId);
         //  creating ordered products using order id
-        const results = await Promise.all(
+        await Promise.all(
             cartData.map(({ productId, quantity }) =>
                 createOrderedItems(orderId, productId, quantity)
             )
         );
+        orderComplete = true;
+        checkOrder();
     } catch (error) {
         console.error("Checkout failed:", error);
     }
 });
+
+const checkOrder = () => {
+    console.log(orderComplete + "calling function");
+    if (orderComplete) {
+        checkoutPage.style.display = "none";
+    }
+};
