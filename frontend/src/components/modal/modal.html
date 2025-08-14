@@ -2,12 +2,9 @@
     <div class="modal">
         <button class="modal__close-btn" id="modal-close-btn">&times;</button>
         <h2 class="modal__title">Your Order</h2>
-
-        <!-- NEW: dynamic count -->
-        <p class="modal__count" id="modal-item-count">Your cart has 0 items.</p>
-
-        <div class="modal__content" id="modal-cart-items"></div>
-
+        <div class="modal__content" id="modal-cart-items">
+            <!-- Cart items will be injected here -->
+        </div>
         <div class="modal__footer">
             <p class="modal__total">
                 Total: <span id="modal-total-price">£0.00</span>
