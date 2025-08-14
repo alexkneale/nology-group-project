@@ -63,7 +63,6 @@ formCreate.addEventListener("submit", (event) => {
             );
             currentUser = await responseUser.json();
             userDisplay.innerText = `Signed in as Name: ${currentUser.name}, Email: ${currentUser.email}`;
-            sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 
             return response.json(); // or whatever the API returns
         })
@@ -100,7 +99,6 @@ const signInHandling = async (event: SubmitEvent): Promise<void> => {
             divSignIn.style.backgroundColor = "#e6f9e6";
             signInMessage.innerText = `Welcome back, ${result.name}!`;
             currentUser = result;
-            sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
             userDisplay.innerText = `Signed in as Name: ${currentUser.name}, Email: ${currentUser.email}`;
         } else {
             // wrong name
