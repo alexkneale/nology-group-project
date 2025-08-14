@@ -1,0 +1,67 @@
+<div id="userDivContainer" data-component="userUI">
+    <div class="user-ui__title">
+        <h2>Sign up or Sign in</h2>
+    </div>
+
+    <div class="user-ui__forms">
+        <!-- Create User -->
+        <div class="user-ui__form user-ui__form--create" id="user-create">
+            <div class="user-ui__form-container">
+                <h3>Create New User</h3>
+
+                <form class="form form--create" id="form-create">
+                    <label for="name-create">Name :</label><br />
+                    <input
+                        type="text"
+                        id="name-create"
+                        name="name"
+                        value="John Doe"
+                    /><br />
+                    <label for="email-create">Email:</label><br />
+                    <input
+                        type="text"
+                        id="email-create"
+                        name="email"
+                        value="Doe"
+                    /><br /><br />
+                    <input
+                        id="submit-create"
+                        type="submit"
+                        value="Create New User"
+                    />
+                </form>
+                <p class="user-ui__message" id="create-message"></p>
+            </div>
+        </div>
+
+        <span class="user-ui__separator">or</span>
+
+        <!-- Sign In -->
+        <div class="user-ui__form user-ui__form--sign-in" id="user-signin">
+            <h3>Sign in</h3>
+
+            <form class="form form--sign-in" id="form-signin">
+                <label for="name-signin">Name :</label><br />
+                <input
+                    type="text"
+                    id="name-signin"
+                    name="name"
+                    value="John Doe"
+                /><br />
+                <label for="email-signin">Email:</label><br />
+                <input
+                    type="text"
+                    id="email-signin"
+                    name="email"
+                    value="Doe"
+                /><br /><br />
+                <input id="submit-signin" type="submit" value="Sign in" />
+            </form>
+            <p class="user-ui__message" id="signin-message"></p>
+        </div>
+    </div>
+
+    <div class="user-ui__display">
+        <h3 id="user-display"></h3>
+    </div>
+</div>
