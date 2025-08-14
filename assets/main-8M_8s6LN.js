@@ -24,7 +24,7 @@ import{n as w,l as M}from"./ecoshoplogo-BBMl9hwc.js";const s={cart:[]},y=[],k=t=
         <div class="product-section__image-wrapper">\r
             <img\r
                 class="product-section__image"\r
-                src="assets/clothing.jpg"\r
+                src="/assets/clothing.jpg"\r
                 alt="Collab Artwork"\r
             />\r
         </div>\r
