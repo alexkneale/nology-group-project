@@ -23,11 +23,12 @@ const userDisplay = document.getElementById(
 const URL_BASE = "https://nology-group-project-production.up.railway.app/";
 
 type User = {
+    id: number;
     email: string;
     name: string;
 };
 
-export let currentUser;
+export let currentUser: User;
 
 formCreate.addEventListener("submit", (event) => {
     event.preventDefault(); // prevent form from reloading the page

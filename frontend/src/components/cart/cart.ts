@@ -1,8 +1,10 @@
 import nav from "../nav/navigation.html?raw";
+// import "../components/nav/nav";
 import logoUrl from "../../assets/ecoshoplogo.png";
 import { createElement, getObject, createOrderedItems } from "./cartUtils";
 import type { Product, Order } from "./cartUtils";
 import "./userSignUp";
+import { currentUser } from "./userSignUp";
 const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
 let orderComplete = false;
 
@@ -31,10 +33,11 @@ const userBasketData = sessionStorage.getItem("checkoutProducts");
 if (!userBasketData) {
     console.error("No user input data found");
 }
-
+const cartData: { productId: number; quantity: number }[] = JSON.parse(
+    userBasketData!
+);
 // sample sessiondata to receive
-const cartData: { productId: number; quantity: number }[] =
-    JSON.parse(userBasketData);
+
 const productIds: number[] = cartData.map((obj) => obj.productId);
 
 const allProductData = await getObject(`${BASE_URL}/products`);
@@ -114,6 +117,13 @@ const checkOrder = () => {
 // event listeners
 checkoutButton.addEventListener("click", async () => {
     try {
+        // const currentUserFile = sessionStorage.getItem("currentUser");
+        // const currentUser = JSON.parse(currentUserFile);
+        console.log(currentUser);
+        // if (!currentUserFile) {
+        //     console.error("No user data found");
+        // }
+        console.log(currentUser.id);
         const orderResponse = await fetch(
             `${BASE_URL}/orders?userId=${currentUser.id}`,
             {
@@ -143,7 +153,9 @@ checkoutButton.addEventListener("click", async () => {
         const p = createElement(
             "p",
             "checkout-complete__p",
-            `Your order has been placed and your card on file will be charged £${totalBasket()}. A confirmation email will be sent to ${currentUser}`
+            `Your order has been placed and your card on file will be charged £${totalBasket()}. A confirmation email will be sent to ${
+                currentUser.email
+            }`
         );
         endPage.appendChild(image);
         endPage.appendChild(p);
