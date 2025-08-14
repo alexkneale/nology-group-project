@@ -27,7 +27,7 @@ type User = {
     name: string;
 };
 
-let currentUser;
+export let currentUser;
 
 formCreate.addEventListener("submit", (event) => {
     event.preventDefault(); // prevent form from reloading the page

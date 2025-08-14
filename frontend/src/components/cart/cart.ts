@@ -4,9 +4,6 @@ import { createElement, getObject, createOrderedItems } from "./cartUtils";
 import type { Product, Order } from "./cartUtils";
 import "./userSignUp";
 const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
-
-// need to replace with actual userId
-const userId = 1;
 let orderComplete = false;
 
 // queryselectors
@@ -118,7 +115,7 @@ const checkOrder = () => {
 checkoutButton.addEventListener("click", async () => {
     try {
         const orderResponse = await fetch(
-            `${BASE_URL}/orders?userId=${userId}`,
+            `${BASE_URL}/orders?userId=${currentUser.id}`,
             {
                 method: "POST",
             }
@@ -138,12 +135,15 @@ checkoutButton.addEventListener("click", async () => {
         );
         orderComplete = true;
         checkOrder();
-        const image = createElement("img", "checkout-complete__img");
-        image.src = "srcassets\validation.jpg";
+        const image = createElement(
+            "img",
+            "checkout-complete__img"
+        ) as HTMLImageElement;
+        image.src = "validation.jpg";
         const p = createElement(
             "p",
             "checkout-complete__p",
-            `Your order has been placed and your card on file will be charged £${totalBasket()}. A confirmation email will be sent to YOUREMAILHERE`
+            `Your order has been placed and your card on file will be charged £${totalBasket()}. A confirmation email will be sent to ${currentUser}`
         );
         endPage.appendChild(image);
         endPage.appendChild(p);
