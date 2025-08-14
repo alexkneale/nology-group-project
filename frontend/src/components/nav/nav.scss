@@ -1,19 +1,27 @@
 @use "./palette";
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap");
 
+html{
+    scroll-behavior: smooth;
+}
+
 .navbar {
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 12px 16px;
-
     display: flex;
     align-items: center;
     gap: 24px;
-
-    border-bottom: 1px solid palette.$color-black;
-    background: palette.$color-white;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1); 
+    background: rgba(255, 255, 255, 0.7); 
     color: palette.$color-black;
     font-family: "Plus Jakarta Sans", sans-serif;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 1000; 
+    backdrop-filter: blur(18px); 
+
 
     /* logo */
     &__logo-link {
@@ -21,20 +29,20 @@
         text-decoration: none;
         color: palette.$color-black;
         white-space: nowrap;
-        display: inline-flex;
-        align-items: center;
     }
 
     &__logo-img {
         display: block;
         height: 100px;
         width: auto;
+        margin-left: 1rem;
     }
 
     /* menu */
     &__menu {
         display: flex;
-        align-items: center;
+        justify-content: space-around;
+        width: 100%;
         gap: 24px;
         list-style: none;
         margin: 0;
@@ -65,6 +73,7 @@
     &__cart-btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 8px;
         padding: 8px 12px;
         border-radius: 9999px;
@@ -73,6 +82,8 @@
         color: palette.$color-white;
         cursor: grab;
         font-weight: 600;
+        margin-right: 1rem;
+        min-width: 150px;
 
         &:hover {
             background: palette.$color-dark-green-light;
@@ -91,5 +102,10 @@
         color: palette.$color-white;
         font-size: 12px;
         line-height: 1;
+    }
+
+    &__cart-total {
+        min-width: 100px
+
     }
 }
