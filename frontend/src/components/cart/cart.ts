@@ -145,19 +145,13 @@ checkoutButton.addEventListener("click", async () => {
         );
         orderComplete = true;
         checkOrder();
-        const image = createElement(
-            "img",
-            "checkout-complete__img"
-        ) as HTMLImageElement;
-        image.src = "validation.jpg";
         const p = createElement(
             "p",
             "checkout-complete__p",
-            `Your order has been placed and your card on file will be charged £${totalBasket()}. A confirmation email will be sent to ${
+            `Your order has been placed and your card will be charged £${totalBasket()}.\n \nA confirmation email has be sent to ${
                 currentUser.email
             }`
         );
-        endPage.appendChild(image);
         endPage.appendChild(p);
     } catch (error) {
         console.error("Checkout failed:", error);

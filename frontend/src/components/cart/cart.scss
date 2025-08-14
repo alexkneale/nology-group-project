@@ -98,4 +98,8 @@
     width: 60%;
     height: 60vw;
     border: palette.$color-dark-green-dark solid 3px;
+    &__p {
+        margin-top: 30px;
+        color: #378837;
+    }
 }
