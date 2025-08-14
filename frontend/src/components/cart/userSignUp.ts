@@ -23,6 +23,7 @@ const userDisplay = document.getElementById(
 const URL_BASE = "https://nology-group-project-production.up.railway.app/";
 
 type User = {
+    id: number;
     email: string;
     name: string;
 };
