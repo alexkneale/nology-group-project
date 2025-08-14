@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id="userDivContainer">
+            <div id="userDivCreate">
+                <h2>Create New User</h2>
+
+                <form class="form form__create" id="formCreate">
+                    <label for="name">Name :</label><br />
+                    <input
+                        type="text"
+                        id="nameCreate"
+                        name="name"
+                        value="John Doe"
+                    /><br />
+                    <label for="email">Email:</label><br />
+                    <input
+                        type="text"
+                        id="emailCreate"
+                        name="email"
+                        value="Doe"
+                    /><br /><br />
+                    <input
+                        id="submitCreate"
+                        type="submit"
+                        value="Create New User"
+                    />
+                </form>
+                <p id="createMessage"></p>
+            </div>
+
+            <div id="userDivSignIn">
+                <h2>Sign in</h2>
+
+                <form class="form form__sign-in" id="formSignIn">
+                    <label for="name">Name :</label><br />
+                    <input
+                        type="text"
+                        id="nameSignIn"
+                        name="name"
+                        value="John Doe"
+                    /><br />
+                    <label for="email">Email:</label><br />
+                    <input
+                        type="text"
+                        id="emailSignIn"
+                        name="email"
+                        value="Doe"
+                    /><br /><br />
+                    <input id="submitSignIn" type="submit" value="Sign in" />
+                </form>
+                <p id="signInMessage"></p>
+            </div>
+            <p id="userDisplay"></p>
+        </div>
+    </body>
+    <script src="./index.js"></script>
+</html>
