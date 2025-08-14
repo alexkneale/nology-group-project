@@ -29,12 +29,15 @@ if (rootNavBar) {
     if (logoImg) logoImg.src = logoUrl;
 }
 
+const userBasketData = sessionStorage.getItem("checkoutProducts");
+
+if (!userBasketData) {
+    console.error("No user input data found");
+}
+
 // sample sessiondata to receive
-const cartData: { productId: number; quantity: number }[] = [
-    { productId: 6, quantity: 3 },
-    { productId: 11, quantity: 1 },
-    { productId: 8, quantity: 1 },
-];
+const cartData: { productId: number; quantity: number }[] =
+    JSON.parse(userBasketData);
 const productIds: number[] = cartData.map((obj) => obj.productId);
 
 const allProductData = await getObject(`${BASE_URL}/products`);

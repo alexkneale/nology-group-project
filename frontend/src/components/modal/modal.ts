@@ -84,42 +84,38 @@ placeOrderBtn.addEventListener("click", async () => {
     const { cart } = getCartState();
     if (cart.length === 0) return;
 
+    // export type Product = {
+    //     id: number;
+    //     name: string;
+    //     description: string;
+    //     price: number;
+    //     category: string;
+    //     imgUrl: string;
+    //     quantityInStock: number;
+    // };
+
+    // export type CartItem = {
+    //     product: Product;
+    //     quantity: number;
+    // };
+
+    // type CartState = {
+    //     cart: CartItem[];
+    // };
+
+    // const state: CartState = {
+    //     cart: [],
+    // };
+    //
+
     // Prepare the order payload
-    const orderPayload = {
-        userId: 1, // TO DO !!!! ---> Static userId for now, should be dynamic with auth
-        orderedProducts: cart.map((item) => ({
-            product: { id: item.product.id },
-            quantity: item.quantity,
-            priceAtPurchase: item.product.price,
-        })),
-    };
+    const orderPayload = cart.map((item) => ({
+        productId: item.product.id,
+        quantity: item.quantity,
+    }));
 
-    try {
-        const response = await fetch(
-            "https://nology-group-project-production.up.railway.app/api/orders",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(orderPayload),
-            }
-        );
-        if (!response.ok) {
-            throw new Error(
-                `API error: ${response.status} ${response.statusText}`
-            );
-        }
-
-        const createdOrder = await response.json();
-        console.log("Order placed successfully:", createdOrder);
-        alert("Order placed successfully!");
-        clearCart(); // Empty cart after order
-        closeModal(); // Hide modal
-    } catch (error) {
-        console.error("Failed to place order:", error);
-        alert("Failed to place order. Please try again.");
-    }
+    sessionStorage.setItem("checkoutProducts", JSON.stringify(orderPayload));
+    window.location.href = "cart.html";
 });
 
 subscribe(updateModalContent); // Subscribe to cart changes so modal updates automatically
