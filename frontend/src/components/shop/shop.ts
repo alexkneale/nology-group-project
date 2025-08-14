@@ -128,14 +128,36 @@ fetchProducts().then((fetchedProducts) => {
 
 subscribe(updateCardsView);
 
+
 const searchInput = document.getElementById("searchInput") as HTMLInputElement;
-searchInput.addEventListener("input", () => {
+const categoryFilter = document.getElementById("categoryFilter") as HTMLSelectElement;
+
+categoryFilter.addEventListener("change", filterProducts);
+searchInput.addEventListener("input", filterProducts);
+
+function filterProducts(){
+  
     const query = searchInput.value.toLowerCase();
+    const selectedCategory = categoryFilter.value;
+
+    const filteredProduct = products.filter((product)=> (selectedCategory === "all" || product.category === selectedCategory) &&
+    product.name.toLowerCase().includes(query));
+
     const container = document.getElementById("itemList") as HTMLElement;
     container.innerHTML = "";
 
-    products
-        .filter((product) => product.name.toLowerCase().includes(query))
-        .forEach((product) => productCardGenerator(product));
+    if (filteredProduct.length === 0) {
+       
+        const noResultsMessage = document.createElement("div");
+        noResultsMessage.classList.add("no-results");
+        noResultsMessage.innerText = "No results found, Try checking your spelling. ";
+        container.appendChild(noResultsMessage);
+    } else {
+        
+        filteredProduct.forEach((product) => {
+            productCardGenerator(product);
+        });
+    }
     updateCardsView();
-});
+  ;
+}

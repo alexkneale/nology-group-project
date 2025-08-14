@@ -1,6 +1,7 @@
 import nav from "./navigation.html?raw";
 import logoUrl from "../../assets/ecoshoplogo.png";
 import { getCartState, subscribe } from "../../store";
+import { openModal } from "../modal/modal";
 
 // injecting the navbar into index.html
 const rootNavBar = document.querySelector("#navbar-root");
@@ -40,7 +41,9 @@ const initNavbar = (): void => {
     updateCartDisplay();
 
     const cartBtn = document.querySelector(".navbar__cart-btn");
-    // open modal here
+    if (cartBtn) {
+        cartBtn.addEventListener("click", openModal);
+    }
 };
 if (document.readyState !== "loading") {
     initNavbar();
