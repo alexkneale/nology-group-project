@@ -28,7 +28,7 @@
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
-    transition:  0.4s;
+    transition: 0.4s;
 }
 
 .shop-card:hover {
@@ -54,15 +54,34 @@
 .shop-card__price {
     font-size: 1.3rem;
     margin-top: 1rem;
-    margin-bottom: 1.5rem; 
-    color: #000000; 
-    font-weight: bold; 
-    letter-spacing: 1.5px; 
+    margin-bottom: 1.5rem;
+    color: #000000;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.shop-card__quantity {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.shop-card__cart-btn,
+.shop-card__remove-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
 }
 
 .shop-card__cart-btn {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
     background-color: #2e7d32;
-    justify-content: center;
+}
+
+.shop-card__remove-btn {
+    background-color: #f44336;
 }

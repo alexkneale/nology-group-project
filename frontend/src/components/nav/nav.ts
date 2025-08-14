@@ -1,9 +1,33 @@
 import nav from "./navigation.html?raw";
 import logoUrl from "../../assets/ecoshoplogo.png";
+import { getCartState, subscribe } from "../../store";
 
 // injecting the navbar into index.html
 const rootNavBar = document.querySelector("#navbar-root");
 if (rootNavBar) rootNavBar.innerHTML = nav;
+
+const updateCartDisplay = () => {
+    const state = getCartState();
+    const total = state.cart.reduce(
+        (sum, item) => sum + item.product.price * item.quantity,
+        0
+    );
+    const count = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    const cartTotalEl = document.querySelector<HTMLSpanElement>(
+        ".navbar__cart-total"
+    );
+    const cartCountEl = document.querySelector<HTMLSpanElement>(
+        ".navbar__cart-count"
+    );
+
+    if (cartTotalEl) {
+        cartTotalEl.innerText = `£${total.toFixed(2)}`;
+    }
+    if (cartCountEl) {
+        cartCountEl.innerText = count.toString();
+    }
+};
 
 // logo
 const initNavbar = (): void => {
@@ -12,6 +36,11 @@ const initNavbar = (): void => {
     img.src = logoUrl;
     img.onload = () => console.log("Logo loaded:", img.src);
     img.onerror = () => console.error("Logo failed to load:", img.src);
+    subscribe(updateCartDisplay);
+    updateCartDisplay();
+
+    const cartBtn = document.querySelector(".navbar__cart-btn");
+    // open modal here
 };
 if (document.readyState !== "loading") {
     initNavbar();
