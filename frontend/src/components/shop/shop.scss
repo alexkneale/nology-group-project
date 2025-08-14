@@ -3,6 +3,10 @@
     margin-bottom: 1.5rem;
 }
 
+.shop-section {
+    min-height: 50vh;
+}
+
 .shop-section__search {
     padding: 10px;
     width: 15%;
@@ -24,11 +28,12 @@
 
 .shop-card {
     background-color: #ffffff;
-    border: 2px solid #000000;
+    border: 1px solid #00570581;
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
     transition: 0.4s;
+    font-family: "Plus Jakarta Sans", sans-serif;;
 }
 
 .shop-card:hover {
@@ -84,4 +89,16 @@
 
 .shop-card__remove-btn {
     background-color: #f44336;
+}
+
+.shop-card__description{
+    min-height: 110px;
+}
+
+.shop-card__name{
+    min-height: 80px;
+}
+
+.no-results {
+    font-size: 1.5rem;
 }
