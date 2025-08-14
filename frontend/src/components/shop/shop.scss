@@ -31,7 +31,7 @@
     padding: 1rem;
     text-align: center;
     transition: 0.4s;
-    font-family: "Plus Jakarta Sans", sans-serif;;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .shop-card:hover {
@@ -82,18 +82,18 @@
 }
 
 .shop-card__cart-btn {
-    background-color: #2e7d32;
+    background-color: #68a66b;
 }
 
 .shop-card__remove-btn {
-    background-color: #f44336;
+    background-color: #465d2e;
 }
 
-.shop-card__description{
+.shop-card__description {
     min-height: 110px;
 }
 
-.shop-card__name{
+.shop-card__name {
     min-height: 80px;
 }
 
@@ -101,6 +101,6 @@
     font-size: 1.3rem;
 }
 
-#shop{
-     scroll-margin-top: 150px;
+#shop {
+    scroll-margin-top: 150px;
 }
