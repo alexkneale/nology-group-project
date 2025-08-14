@@ -8,6 +8,10 @@ const checkoutButton = document.querySelector(
     ".checkout-button"
 ) as HTMLButtonElement;
 
+const checkoutTotal = document.querySelector(
+    ".checkout-grid__total--price"
+) as HTMLElement;
+
 // importing nav bar and logo
 const rootNavBar = document.querySelector("#navbar-root");
 if (rootNavBar) {
@@ -116,6 +120,11 @@ const totalBasket = (): number => {
         return total + itemTotal;
     }, 0);
 };
+
+if (checkoutTotal) {
+    const total = totalBasket();
+    checkoutTotal.innerText = `£${total}`;
+}
 
 // sending post request for order, ordered products
 const createOrder = async (userId: number): Promise<string> => {
