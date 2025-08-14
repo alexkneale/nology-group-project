@@ -7,7 +7,9 @@ const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
 
 // need to replace with actual userId
 const userId = 1;
+let orderComplete = false;
 
+// queryselectors
 const checkoutButton = document.querySelector(
     ".checkout-button"
 ) as HTMLButtonElement;
@@ -81,12 +83,14 @@ const productCards = (product: Product | null): void => {
 };
 // creating cards and filtering based on product id
 allProductData
-    ?.filter((product) => productIds.includes(product.id))
+    ?.filter((product: Product) => productIds.includes(product.id))
     .forEach(productCards);
 
 const totalBasket = (): number => {
     return cartData.reduce((total, item) => {
-        const product = allProductData?.find((p) => p.id === item.productId);
+        const product = allProductData?.find(
+            (p: Product) => p.id === item.productId
+        );
         const itemTotal = product ? product.price * item.quantity : 0;
         return total + itemTotal;
     }, 0);
@@ -96,9 +100,17 @@ if (checkoutTotal) {
     const total = totalBasket();
     checkoutTotal.innerText = `£${total}`;
 }
-
-// sending post request for ordered items, need for each
-let orderComplete = false;
+const endPage = document.querySelector(".checkout-complete") as HTMLDivElement;
+console.log(endPage);
+const checkOrder = () => {
+    console.log(orderComplete + "calling function");
+    if (orderComplete) {
+        console.log(endPage);
+        endPage.style.display = "block";
+        console.log("here");
+        checkoutPage.style.display = "none";
+    }
+};
 // event listeners
 checkoutButton.addEventListener("click", async () => {
     try {
@@ -127,10 +139,3 @@ checkoutButton.addEventListener("click", async () => {
         console.error("Checkout failed:", error);
     }
 });
-
-const checkOrder = () => {
-    console.log(orderComplete + "calling function");
-    if (orderComplete) {
-        checkoutPage.style.display = "none";
-    }
-};
