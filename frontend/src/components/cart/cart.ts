@@ -7,7 +7,9 @@ const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
 
 // need to replace with actual userId
 const userId = 1;
+let orderComplete = false;
 
+// queryselectors
 const checkoutButton = document.querySelector(
     ".checkout-button"
 ) as HTMLButtonElement;
@@ -15,6 +17,7 @@ const checkoutButton = document.querySelector(
 const checkoutTotal = document.querySelector(
     ".checkout-grid__total--price"
 ) as HTMLElement;
+const checkoutPage = document.querySelector(".checkout-page") as HTMLDivElement;
 
 // importing nav bar and logo
 const rootNavBar = document.querySelector("#navbar-root");
@@ -32,30 +35,9 @@ const cartData: { productId: number; quantity: number }[] = [
     { productId: 11, quantity: 1 },
     { productId: 8, quantity: 1 },
 ];
-
 const productIds: number[] = cartData.map((obj) => obj.productId);
 
-const getProductData = async (url: string): Promise<Product[] | null> => {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(
-                `API failed with response ${response.statusText} and error text ${response.status}`
-            );
-        }
-        return await response.json();
-    } catch (error) {
-        if (error instanceof Error) {
-            console.error(`Fetch failed with error: ${error}`);
-        } else {
-            throw new Error(`Unknown error occured`);
-        }
-    }
-    return [];
-};
-console.log(productIds);
-
-const allProductData = await getProductData(`${BASE_URL}/products`);
+const allProductData = await getObject(`${BASE_URL}/products`);
 
 // function to create cards for products
 const productCards = (product: Product | null): void => {
@@ -101,12 +83,14 @@ const productCards = (product: Product | null): void => {
 };
 // creating cards and filtering based on product id
 allProductData
-    ?.filter((product) => productIds.includes(product.id))
+    ?.filter((product: Product) => productIds.includes(product.id))
     .forEach(productCards);
 
 const totalBasket = (): number => {
     return cartData.reduce((total, item) => {
-        const product = allProductData?.find((p) => p.id === item.productId);
+        const product = allProductData?.find(
+            (p: Product) => p.id === item.productId
+        );
         const itemTotal = product ? product.price * item.quantity : 0;
         return total + itemTotal;
     }, 0);
@@ -116,9 +100,17 @@ if (checkoutTotal) {
     const total = totalBasket();
     checkoutTotal.innerText = `£${total}`;
 }
-
-// sending post request for ordered items, need for each
-
+const endPage = document.querySelector(".checkout-complete") as HTMLDivElement;
+console.log(endPage);
+const checkOrder = () => {
+    console.log(orderComplete + "calling function");
+    if (orderComplete) {
+        console.log(endPage);
+        endPage.style.display = "block";
+        console.log("here");
+        checkoutPage.style.display = "none";
+    }
+};
 // event listeners
 checkoutButton.addEventListener("click", async () => {
     try {
@@ -136,11 +128,13 @@ checkoutButton.addEventListener("click", async () => {
         const orderId = orderGenerated.id;
         console.log(orderId);
         //  creating ordered products using order id
-        const results = await Promise.all(
+        await Promise.all(
             cartData.map(({ productId, quantity }) =>
                 createOrderedItems(orderId, productId, quantity)
             )
         );
+        orderComplete = true;
+        checkOrder();
     } catch (error) {
         console.error("Checkout failed:", error);
     }

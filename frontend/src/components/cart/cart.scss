@@ -1,7 +1,11 @@
 @use "../nav/palette.scss";
 @use "./userSignUp";
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap");
-
+.checkout-page {
+    display: flex;
+    flex-direction: column;
+    margin: 2vw;
+}
 .checkout-grid {
     display: flex;
     flex-direction: column;
@@ -26,6 +30,8 @@
     &__total {
         font-family: "Plus Jakarta Sans", sans-serif;
         text-align: center;
+        font-size: large;
+        font-weight: 600;
     }
 }
 
@@ -66,12 +72,27 @@
 }
 
 .checkout-button {
+    align-self: center;
     background-color: palette.$color-dark-green-dark;
     color: white;
     font-size: medium;
     border-radius: 99px;
     width: 200px;
-    margin-left: 40%;
-    margin-top: 2vw;
+    height: 30px;
+    // margin-left: 40%;
+    border: none;
+    margin-top: 3vw;
     font-family: "Plus Jakarta Sans", sans-serif;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+.checkout-complete {
+    display: none;
+    font-size: xx-large;
+    text-align: center;
+    margin: 30vw;
+    height: 40vw;
+    border: palette.$color-dark-green-dark solid 3px;
 }

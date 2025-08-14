@@ -12,19 +12,22 @@
     </head>
     <body>
         <div id="navbar-root"></div>
-        <div id="userUI-root"></div>
-        <div class="checkout-grid">
-            <div class="checkout-grid__header">
-                <span>Product</span>
-                <span>Price</span>
-                <span>Quantity</span>
+        <div class="checkout-page">
+            <div id="userUI-root"></div>
+            <div class="checkout-grid">
+                <div class="checkout-grid__header">
+                    <span>Product</span>
+                    <span>Price</span>
+                    <span>Quantity</span>
+                </div>
+                <div id="productList" class="checkout-grid__body"></div>
+                <div id="totalCost" class="checkout-grid__total">
+                    <span>Total</span
+                    ><span class="checkout-grid__total--price">£0.00</span>
+                </div>
             </div>
-            <div id="productList" class="checkout-grid__body"></div>
-            <div id="totalCost" class="checkout-grid__total">
-                <span>Total</span
-                ><span class="checkout-grid__total--price">£0.00</span>
-            </div>
+            <button class="checkout-button">Place your order!</button>
         </div>
-        <button class="checkout-button">Place your order!</button>
+        <div class="checkout-complete"><p>Purchase successful!</p></div>
     </body>
 </html>
