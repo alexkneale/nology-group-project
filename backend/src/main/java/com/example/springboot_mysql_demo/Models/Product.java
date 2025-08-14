@@ -9,13 +9,13 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String name;
     private String description;
     private double price;
     private String category;
     private int quantityInStock;
+    private String imgUrl;
 
 
     @OneToMany(mappedBy = "product")
@@ -68,5 +68,13 @@ public class Product {
 
     public void setQuantityInStock(int quantityInStock) {
         this.quantityInStock = quantityInStock;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
