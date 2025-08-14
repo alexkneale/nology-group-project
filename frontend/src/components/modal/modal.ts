@@ -1,6 +1,6 @@
 import modalHtml from "./modal.html?raw";
 import "./modal.scss";
-import { getCartState, subscribe, type CartItem, clearCart } from "../../store";
+import { getCartState, subscribe, type CartItem } from "../../store";
 
 const modalContainer = document.createElement("div");
 modalContainer.id = "modal-root";

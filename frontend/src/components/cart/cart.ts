@@ -2,7 +2,7 @@ import nav from "../nav/navigation.html?raw";
 // import "../components/nav/nav";
 import logoUrl from "../../assets/ecoshoplogo.png";
 import { createElement, getObject, createOrderedItems } from "./cartUtils";
-import type { Product, Order } from "./cartUtils";
+import type { Product } from "./cartUtils";
 import "./userSignUp";
 import { currentUser } from "./userSignUp";
 const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
