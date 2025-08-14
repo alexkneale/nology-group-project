@@ -1,18 +1,24 @@
-const divCreate = document.getElementById("userDivCreate") as HTMLDivElement;
-const divSignIn = document.getElementById("userDivSignIn") as HTMLDivElement;
+import div from "./userSignUp.html?raw";
+
+// injecting the div into cart.html
+const rootDiv = document.querySelector("#userUI-root");
+if (rootDiv) rootDiv.innerHTML = div;
+
+const divCreate = document.getElementById("user-create") as HTMLDivElement;
+const divSignIn = document.getElementById("user-signin") as HTMLDivElement;
 const signInMessage = document.getElementById(
-    "signInMessage"
+    "signin-message"
 ) as HTMLParagraphElement;
 const createMessage = document.getElementById(
-    "createMessage"
+    "create-message"
 ) as HTMLParagraphElement;
 
-const formCreate = document.getElementById("formCreate") as HTMLFormElement;
-const formSignIn = document.getElementById("formSignIn") as HTMLFormElement;
+const formCreate = document.getElementById("form-create") as HTMLFormElement;
+const formSignIn = document.getElementById("form-signin") as HTMLFormElement;
 
 const userDisplay = document.getElementById(
-    "userDisplay"
-) as HTMLParagraphElement;
+    "user-display"
+) as HTMLHeadingElement;
 
 const URL_BASE = "https://nology-group-project-production.up.railway.app/";
 
@@ -54,7 +60,7 @@ formCreate.addEventListener("submit", (event) => {
                 // Server responded but with an error code
                 throw new Error(`${response.status}`);
             }
-            divCreate.style.backgroundColor = "#d1f5e0";
+            divCreate.style.backgroundColor = "#e6f9e6";
             createMessage!.innerText = `User with email ${body.email} registered successfully and signed in.`;
 
             //currentUser = body;

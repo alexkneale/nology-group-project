@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap");
+
+* {
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+.user-ui {
+    &__title {
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    &__forms {
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 40px;
+    }
+
+    &__form {
+        width: 20%; /* 0.2 of total page width */
+        min-width: 250px; /* prevents shrinking too much on small screens */
+        height: 300px; /* fixed height */
+        padding: 20px;
+        background-color: #f0f0f0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 10px;
+
+        &-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        &--create {
+            /* specific styles if needed */
+        }
+
+        &--sign-in {
+            /* specific styles if needed */
+        }
+    }
+
+    &__separator {
+        align-self: center;
+        font-weight: bold;
+    }
+
+    &__message {
+        margin-top: 10px;
+        overflow-wrap: break-word;
+        font-size: 0.9rem;
+    }
+
+    &__display {
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+}

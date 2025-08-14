@@ -1,7 +1,7 @@
 import nav from "../nav/navigation.html?raw";
 import logoUrl from "../../assets/ecoshoplogo.png";
 import { createElement } from "./cartUtils";
-
+import "./userSignUp";
 const BASE_URL = "https://nology-group-project-production.up.railway.app/api";
 
 const checkoutButton = document.querySelector(
